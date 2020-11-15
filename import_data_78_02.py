@@ -70,15 +70,15 @@ def import_data(directory):
                         UT.append(tmp[61])
 
                     # 当单个文件过大的时候需要拆分
-                    if index == 300:
+                    if index %200 ==0:
                         callProc(sql_data, files)
                         sql_data = []
             if sql_data:
                 callProc(sql_data, files)
         except:
-            print("导入失败")
             with open('log.txt', 'a', encoding="utf-8") as tmp:
                 # tmp.write("当前导入的文件")
+                print("导入失败")
                 tmp.write('\n')
                 tmp.write(files)
                 # tmp.write("导入成功的文件")
